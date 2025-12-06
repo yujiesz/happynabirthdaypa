@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday Karel</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: linear-gradient(135deg, #ffd6e8, #d4f1ff, #ffe5b4);
+            font-family: "Poppins", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            width: 85%;
+            max-width: 420px;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            animation: fadeIn 2s ease;
+        }
+
+        h1 {
+            color: #ff7aa2;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #444;
+        }
+
+        /* Hearts animation */
+        .heart {
+            position: fixed;
+            top: -10px;
+            color: #ff7aa2;
+            font-size: 20px;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) translateX(30px) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+            /* Slide screen */
+        .slide-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(6px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 20px;
+            animation: fadeIn 0.8s ease;
+            z-index: 9999;
+        }
+
+        .slide-btn {
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: #ff7aa2;
+            border-radius: 10px;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .slide-btn:hover {
+            background: #ff4f87;
+        }
+        </style>
+</head>
+<body>
+
+    <!-- SLIDES -->
+    <div class="slide-screen" id="slide1">
+        <h2>Hi Karel... 💗</h2>
+        <p>Alam mo ba...</p>
+        <button class="slide-btn" onclick="nextSlide(1)">Next ➜</button>
+    </div>
+
+    <div class="slide-screen" id="slide2" style="display:none;">
+        <h2>diko rin alam eh</h2>
+        <p>miss u</p>
+        <button class="slide-btn" onclick="nextSlide(2)">Wag Mo Next ➜</button>
+    </div>
+
+    <div class="slide-screen" id="slide3" style="display:none;">
+        <h2>Talagang nag next pa</h2>
+        <p>crush moba ako???</p>
+        <button class="slide-btn" onclick="nextSlide(3)">Open moto ❤️</button>
+    </div>
+
+    <div class="card">
+        <h1>Happy Birthday,Ate Karel! 🎉</h1>
+        <p>Miss u po haha 💗</p>
+        <p>tanda mona HAHAHAH</p>
+        <p>— From someone who still cares</p>
+        <br>
+        <p style="font-size: 0.9rem; color:#777;">wala ng message pa basta pakabait ka nalang</p>
+    </div>
+
+    <script>
+        function nextSlide(num) {
+            document.getElementById("slide" + num).style.display = "none";
+            if (document.getElementById("slide" + (num + 1))) {
+                document.getElementById("slide" + (num + 1)).style.display = "flex";
+            }
+        }
+
+
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.textContent = "❤️";
+
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+            heart.style.opacity = Math.random();
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
+
+</body>
+</html>
